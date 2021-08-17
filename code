@@ -1,1 +1,26 @@
 
+import streamlit as st
+st.title( ' Streamlit connected with Mysql')
+
+Roll_number=st.number_input('Roll Number')
+first_Name=st.text_input('First Name')
+sur_name=st.text_input('Last Name')
+
+import mysql.connector
+mydb=mysql.connector.connect(host='localhost',
+                             user='root',
+                             password='tejpalananya1@',
+                             port=3306,
+                             database='databasefirst')
+mycursor=mydb.cursor()
+
+
+
+if st.button('Submit'):
+    s = 'INSERT INTO student values(%s,%s,%s)'
+    t=(Roll_number,first_Name,sur_name)
+    mycursor.execute(s,t)
+    mydb.commit()
+    st.write('Thank you for giving detials')
+
+
